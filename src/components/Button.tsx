@@ -1,10 +1,17 @@
-import { Button as NativeBaseButton, IButtonProps, Text } from "native-base";
+import { isLoading } from "expo-font";
+import {
+  Button as NativeBaseButton,
+  IButtonProps,
+  Text,
+  Spinner,
+} from "native-base";
 
 type Props = IButtonProps & {
   title: string;
+  isLoading?: boolean;
 };
 
-export function Button({ title, ...rest }: Props) {
+export function Button({ title, isLoading = false, ...rest }: Props) {
   return (
     <NativeBaseButton
       w={"full"}
@@ -15,7 +22,7 @@ export function Button({ title, ...rest }: Props) {
       {...rest}
     >
       <Text color={"white"} fontFamily={"heading"} fontSize={"sm"}>
-        {title}
+        {isLoading ? <Spinner color={"white"} /> : title}
       </Text>
     </NativeBaseButton>
   );
