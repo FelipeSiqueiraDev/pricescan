@@ -1,17 +1,14 @@
 import { useRef, useState } from "react";
-import { VStack, Heading, Center, Pressable } from "native-base";
 import { TextInput, Keyboard } from "react-native";
+import { VStack, Heading, Center, Pressable } from "native-base";
 
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
 
-import { useNavigation } from "@react-navigation/native";
-import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import { useAuth } from "@hooks/useAuth";
 
 import Toast from "react-native-toast-message";
-
 import { AntDesign } from "@expo/vector-icons";
 
 import { Input } from "@components/Input";
@@ -28,8 +25,6 @@ const signUpSchema = yup.object().shape({
 });
 
 export function SignIn() {
-  const navigation = useNavigation<AuthNavigatorRoutesProps>();
-
   const { signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -60,10 +55,10 @@ export function SignIn() {
   }
 
   return (
-    <VStack flex={1} bg={"black"} px={10}>
+    <VStack flex={1} bg={"gray.100"} px={10}>
       <Center flex={1}>
         <Heading
-          color={"gray.100"}
+          color={"gray.900"}
           fontSize={"xl"}
           mb={6}
           fontFamily={"heading"}
@@ -112,9 +107,9 @@ export function SignIn() {
                   mr={15}
                 >
                   {showPassword ? (
-                    <AntDesign name="eyeo" size={22} color={"white"} />
+                    <AntDesign name="eyeo" size={22} color={"gray.100"} />
                   ) : (
-                    <AntDesign name="eye" size={22} color={"white"} />
+                    <AntDesign name="eye" size={22} color={"gray.100"} />
                   )}
                 </Pressable>
               }

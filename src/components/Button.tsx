@@ -6,22 +6,32 @@ import {
   Spinner,
 } from "native-base";
 
-type Props = IButtonProps & {
+type ButtonProps = IButtonProps & {
   title: string;
   isLoading?: boolean;
+  fontSize?: string;
+  color?: string;
+  pressedColor?: string;
 };
 
-export function Button({ title, isLoading = false, ...rest }: Props) {
+export function Button({
+  title,
+  isLoading = false,
+  fontSize = "2xl",
+  color = "green.700",
+  pressedColor = "green.500",
+  ...rest
+}: ButtonProps) {
   return (
     <NativeBaseButton
       w={"full"}
       h={16}
-      bg={"green.700"}
+      bg={color}
       rounded={"sm"}
-      _pressed={{ bg: "green.500" }}
+      _pressed={{ bg: pressedColor }}
       {...rest}
     >
-      <Text color={"white"} fontFamily={"heading"} fontSize={"sm"}>
+      <Text color={"white"} fontFamily={"heading"} fontSize={fontSize}>
         {isLoading ? <Spinner color={"white"} /> : title}
       </Text>
     </NativeBaseButton>

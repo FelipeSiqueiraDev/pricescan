@@ -3,7 +3,7 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 
-import { Home } from "@screens/Home";
+import { Initial } from "@screens/Initial";
 import { SignIn } from "@screens/SignIn";
 
 type AuthRoutes = {
@@ -18,13 +18,13 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function AuthRoutes() {
   return (
     <Navigator
-      initialRouteName="home"
+      initialRouteName="initial"
       screenOptions={{
         headerShown: false,
         animation: "slide_from_bottom",
       }}
     >
-      <Screen name="home" component={Home} />
+      <Screen name="initial" component={Initial} />
       <Screen name="signIn" component={SignIn} />
     </Navigator>
   );

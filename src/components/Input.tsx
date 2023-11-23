@@ -22,12 +22,12 @@ export const Input = forwardRef(
     return (
       <FormControl isInvalid={invalid} mb={4}>
         <NativeBaseInput
-          bg={"gray.700"}
+          bg={"white"}
           h={16}
           px={4}
           borderWidth={0}
           fontSize={"md"}
-          color={"white"}
+          color={"black"}
           fontFamily={"body"}
           placeholderTextColor={"gray.300"}
           isInvalid={invalid}
@@ -36,7 +36,7 @@ export const Input = forwardRef(
             borderColor: "red.500",
           }}
           _focus={{
-            bg: "gray.700",
+            bg: "white",
             borderWidth: 1,
             borderColor: "green.500",
           }}

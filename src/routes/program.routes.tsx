@@ -1,17 +1,20 @@
 import {
-  createBottomTabNavigator,
-  BottomTabScreenProps,
-} from "@react-navigation/bottom-tabs";
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 
-import { Provisory } from "@screens/Provisory";
+import { Home } from "@screens/Home";
+import { Search } from "@screens/Search";
 
 type ProgramRoutes = {
-  provisory: undefined;
+  home: undefined;
+  search: undefined;
 };
 
-export type ProgramNavigatorRoutesProps = BottomTabScreenProps<ProgramRoutes>;
+export type ProgramNavigatorRoutesProps =
+  NativeStackNavigationProp<ProgramRoutes>;
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export function ProgramRoutes() {
   return (
@@ -19,9 +22,11 @@ export function ProgramRoutes() {
       initialRouteName="home"
       screenOptions={{
         headerShown: false,
+        animation: "slide_from_bottom",
       }}
     >
-      <Screen name="Provisory" component={Provisory} />
+      <Screen name="home" component={Home} />
+      <Screen name="search" component={Search} />
     </Navigator>
   );
 }
