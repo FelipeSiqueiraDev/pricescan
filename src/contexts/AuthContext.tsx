@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 import Toast from "react-native-toast-message";
 
@@ -6,6 +6,7 @@ import { api } from "@services/axios";
 import { UserDTO } from "@dtos/UserDTO";
 import saveUserCredentials from "@storage/user/saveUser.credentials";
 import deleteUserCredentials from "@storage/user/deleteUser.credentials";
+import getUserCredentials from "@storage/user/getUser.credentials";
 
 export type AuthContextDataProps = {
   signIn: (user: UserDTO) => Promise<void>;
@@ -58,6 +59,18 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       throw error;
     }
   }
+
+  useEffect(() => {
+    async function loadUserCredentials() {
+      const user = await getUserCredentials();
+
+      if (user) {
+        setLogged(true);
+      }
+    }
+
+    loadUserCredentials();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ signIn, logged, singOut }}>

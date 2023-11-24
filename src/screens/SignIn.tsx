@@ -77,6 +77,7 @@ export function SignIn() {
               onChangeText={onChange}
               value={value}
               errorMessage={errors.username?.message}
+              cursorColor={"green.500"}
               onSubmitEditing={() => {
                 if (passwordRef.current) {
                   passwordRef.current.focus();
@@ -101,15 +102,16 @@ export function SignIn() {
               errorMessage={errors.password?.message}
               onSubmitEditing={handleSubmit(handleSingUp)}
               secureTextEntry={showPassword ? true : false}
+              mb={4}
               rightElement={
                 <Pressable
                   onPress={() => setShowPassword(!showPassword)}
                   mr={15}
                 >
                   {showPassword ? (
-                    <AntDesign name="eyeo" size={22} color={"gray.100"} />
+                    <AntDesign name="eyeo" size={22} color={"black"} />
                   ) : (
-                    <AntDesign name="eye" size={22} color={"gray.100"} />
+                    <AntDesign name="eye" size={22} color={"black"} />
                   )}
                 </Pressable>
               }

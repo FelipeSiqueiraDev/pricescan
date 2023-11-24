@@ -40,7 +40,7 @@ export function Home() {
           mt={"70%"}
           disabled={loading}
           color={loading ? "green.900" : "green.700"}
-          onPress={() => navigation.navigate("search")}
+          onPress={() => navigation.navigate("searchRoutes")}
         />
 
         <Button

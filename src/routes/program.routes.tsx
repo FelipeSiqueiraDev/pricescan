@@ -4,11 +4,11 @@ import {
 } from "@react-navigation/native-stack";
 
 import { Home } from "@screens/Home";
-import { Search } from "@screens/Search";
+import { SearchRoutes } from "./search.routes";
 
 type ProgramRoutes = {
   home: undefined;
-  search: undefined;
+  searchRoutes: undefined;
 };
 
 export type ProgramNavigatorRoutesProps =
@@ -26,7 +26,7 @@ export function ProgramRoutes() {
       }}
     >
       <Screen name="home" component={Home} />
-      <Screen name="search" component={Search} />
+      <Screen name="searchRoutes" component={SearchRoutes} />
     </Navigator>
   );
 }

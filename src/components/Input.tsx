@@ -22,14 +22,15 @@ export const Input = forwardRef(
     return (
       <FormControl isInvalid={invalid} mb={4}>
         <NativeBaseInput
-          bg={"white"}
+          bg={"gray.100"}
           h={16}
           px={4}
           borderWidth={0}
+          borderBottomWidth={2}
           fontSize={"md"}
-          color={"black"}
+          color={"gray.900"}
           fontFamily={"body"}
-          placeholderTextColor={"gray.300"}
+          placeholderTextColor={"gray.400"}
           isInvalid={invalid}
           _invalid={{
             borderWidth: 1,
@@ -39,6 +40,7 @@ export const Input = forwardRef(
             bg: "white",
             borderWidth: 1,
             borderColor: "green.500",
+            borderBottomWidth: 1
           }}
           ref={ref as React.RefObject<TextInput>}
           {...rest}
