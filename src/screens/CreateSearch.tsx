@@ -18,46 +18,7 @@ import { useForm, Controller } from "react-hook-form";
 
 import { Button } from "@components/Button";
 import { ProgramNavigatorRoutesProps } from "@routes/program.routes";
-
-export const concorrentes: CompanyDataProps[] = [
-  /* {
-    id: 1,
-    name: "Empresa 1",
-  },
-  {
-    id: 2,
-    name: "Empresa 2",
-  },
-  {
-    id: 3,
-    name: "Empresa 3",
-  },
-  {
-    id: 4,
-    name: "Empresa 4",
-  },
-  {
-    id: 5,
-    name: "Empresa 5",
-  },
-  {
-    id: 6,
-    name: "Empresa 6",
-  }, */
-];
-
-export type CompanyDataProps = {
-  id: number;
-  name: string;
-};
-
-export type CreateSearchFormDataProps = {
-  name: string;
-};
-
-const companySchema = yup.object().shape({
-  name: yup.string().required("Informe o nome da empresa"),
-});
+import { useCompanies } from "@hooks/useCompanies";
 
 export function CreateSearch() {
   const navigation = useNavigation<ProgramNavigatorRoutesProps>();
@@ -66,12 +27,13 @@ export function CreateSearch() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver<CreateSearchFormDataProps>(companySchema),
-  });
+  } = useForm();
 
-  function handleCreateSearch({ name }: CreateSearchFormDataProps) {
-    console.log(name);
+  const { competitors } = useCompanies();
+
+  function handleCreateSearch(data: any) {
+    console.log(data);
+    navigation.navigate("addProductList");
   }
 
   return (
@@ -115,11 +77,11 @@ export function CreateSearch() {
                 onValueChange={onChange}
                 selectedValue={value}
               >
-                {concorrentes?.map((item) => (
+                {competitors?.map((item) => (
                   <Select.Item
                     key={item.id}
-                    label={item.name}
-                    value={item.name}
+                    label={item.nome}
+                    value={String(item.id)}
                   />
                 ))}
               </Select>

@@ -11,6 +11,7 @@ import { AuthContextProvider } from "@contexts/AuthContext";
 import { Loading } from "@components/Loading";
 import { Routes } from "@routes/index";
 import Toast from "react-native-toast-message";
+import { CompaniesContextProvider } from "@contexts/CompaniesContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -23,7 +24,9 @@ export default function App() {
         translucent
       />
       <AuthContextProvider>
-        {fontsLoaded ? <Routes /> : <Loading />}
+        <CompaniesContextProvider>
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </CompaniesContextProvider>
       </AuthContextProvider>
       <Toast />
     </NativeBaseProvider>

@@ -4,9 +4,10 @@ import Toast from "react-native-toast-message";
 
 import { api } from "@services/axios";
 import { UserDTO } from "@dtos/UserDTO";
+
+import getUserCredentials from "@storage/user/getUser.credentials";
 import saveUserCredentials from "@storage/user/saveUser.credentials";
 import deleteUserCredentials from "@storage/user/deleteUser.credentials";
-import getUserCredentials from "@storage/user/getUser.credentials";
 
 export type AuthContextDataProps = {
   signIn: (user: UserDTO) => Promise<void>;
@@ -60,15 +61,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }
 
-  useEffect(() => {
-    async function loadUserCredentials() {
-      const user = await getUserCredentials();
+  async function loadUserCredentials() {
+    const user = await getUserCredentials();
 
-      if (user) {
-        setLogged(true);
-      }
+    if (user) {
+      setLogged(true);
     }
-
+  }
+  useEffect(() => {
     loadUserCredentials();
   }, []);
 

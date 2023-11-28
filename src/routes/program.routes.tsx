@@ -5,10 +5,12 @@ import {
 
 import { Home } from "@screens/Home";
 import { SearchRoutes } from "./search.routes";
+import { AddProductList } from "@screens/AddProductList";
 
 type ProgramRoutes = {
   home: undefined;
   searchRoutes: undefined;
+  addProductList: undefined;
 };
 
 export type ProgramNavigatorRoutesProps =
@@ -27,6 +29,7 @@ export function ProgramRoutes() {
     >
       <Screen name="home" component={Home} />
       <Screen name="searchRoutes" component={SearchRoutes} />
+      <Screen name="addProductList" component={AddProductList} />
     </Navigator>
   );
 }

@@ -14,10 +14,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
-type FormDataProps = {
-  username: string;
-  password: string;
-};
+import { UserDTO } from "@dtos/UserDTO";
 
 const signUpSchema = yup.object().shape({
   username: yup.string().required("Informe o nome de usuário"),
@@ -34,11 +31,11 @@ export function SignIn() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataProps>({
+  } = useForm<UserDTO>({
     resolver: yupResolver(signUpSchema),
   });
 
-  async function handleSingUp(data: FormDataProps) {
+  async function handleSingUp(data: UserDTO) {
     Keyboard.dismiss();
     setLoading(true);
     try {
@@ -77,7 +74,7 @@ export function SignIn() {
               onChangeText={onChange}
               value={value}
               errorMessage={errors.username?.message}
-              cursorColor={"green.500"}
+              cursorColor={"#00B37E"}
               onSubmitEditing={() => {
                 if (passwordRef.current) {
                   passwordRef.current.focus();

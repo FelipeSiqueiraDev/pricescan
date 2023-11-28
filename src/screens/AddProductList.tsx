@@ -14,14 +14,11 @@ import { useNavigation } from "@react-navigation/native";
 import { ProgramNavigatorRoutesProps } from "@routes/program.routes";
 
 import { SearchCard } from "@components/SearchCard";
-import { useCompanies } from "@hooks/useCompanies";
-import { CompetitorDTO } from "@dtos/CompetitorDTO";
 
-export function ListSearch() {
+import { concorrentes } from "@screens/CreateSearch";
+
+export function AddProductList() {
   const navigation = useNavigation<ProgramNavigatorRoutesProps>();
-
-  const { competitors } = useCompanies();
-
   return (
     <VStack flex={1} bg={"gray.100"} px={10}>
       <Center flex={1} pt={16}>
@@ -41,16 +38,14 @@ export function ListSearch() {
         </View>
 
         <FlatList
-          data={competitors}
+          data={concorrentes}
           showsVerticalScrollIndicator={false}
           flex={1}
           w={"100%"}
           justifyItems={"center"}
           bounces={true}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <SearchCard competitor={item} />
-          )}
+          keyExtractor={(company) => String(company.id)}
+          renderItem={({ item }) => <SearchCard name={item.name} />}
           ListEmptyComponent={() => (
             <Center mt={150}>
               <AntDesign name="closecircle" size={50} color={"#7C7C8A"} />
@@ -69,6 +64,15 @@ export function ListSearch() {
             paddingBottom: 80,
           }}
         />
+
+        <Pressable
+          position={"absolute"}
+          bottom={8}
+          right={0}
+          onPress={() => console.log("Add product")}
+        >
+          <AntDesign name="pluscircle" size={40} color={"#323238"} />
+        </Pressable>
       </Center>
     </VStack>
   );

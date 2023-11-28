@@ -1,11 +1,43 @@
-import { HStack, Text } from "native-base";
+import { VStack, HStack, Text } from "native-base";
 
-import { CreateSearchFormDataProps } from "@screens/CreateSearch";
+import { CompetitorDTO } from "@dtos/CompetitorDTO";
+import { SearchDTO } from "@dtos/SearchDTO";
 
-export function SearchCard({ name }: CreateSearchFormDataProps) {
+type SeachCardProps = {
+  competitor: CompetitorDTO;
+};
+
+export function SearchCard({ competitor }: SeachCardProps) {
   return (
-    <HStack w={"100%"} h={160} bg={"green.500"} mb={4}>
-      <Text>{name}</Text>
-    </HStack>
+    <VStack w={"100%"} h={160} bg={"white"} mb={4} borderRadius={12} p={4}>
+      <HStack>
+        <Text
+          h={60}
+          w={"65%"}
+          fontSize={"lg"}
+          numberOfLines={2}
+          fontWeight={"bold"}
+        >
+          {competitor.nome}
+        </Text>
+
+        <Text
+          h={60}
+          w={"35%"}
+          fontSize={"md"}
+          numberOfLines={2}
+          color={"green.500"}
+          textAlign={"center"}
+        >
+          25/12/2023
+        </Text>
+      </HStack>
+
+      <Text fontSize={"md"} fontStyle={"italic"}>
+        {competitor.regiao}
+      </Text>
+
+      <Text fontSize={"md"} fontStyle={"italic"}></Text>
+    </VStack>
   );
 }

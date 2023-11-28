@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Pressable, VStack, Center, Text } from "native-base";
 
+import { useCompanies } from "@hooks/useCompanies";
+
 import { useNavigation } from "@react-navigation/native";
 import { ProgramNavigatorRoutesProps } from "@routes/program.routes";
 
@@ -15,14 +17,16 @@ export function Home() {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function handleSincronize() {
+  const { synchronization } = useCompanies();
+
+  async function handleSincronize() {
     setLoading(true);
 
-    console.log("SINCRONIIZAAAAAAAAANDO");
+    await synchronization();
 
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 3000);
   }
 
   return (
